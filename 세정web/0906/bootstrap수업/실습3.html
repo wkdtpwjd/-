@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <style>
+    .box{
+      width: 500px;
+      height: 750px;
+      /* border :1px solid black; */
+      margin-left:100px;
+      margin-top: 50px;
+    }
+
+    .red{
+      background-color: red;
+    }
+    .white{
+      color: white;
+    }
+    .bold{
+      font-weight:bolder;
+    }
+    h6{
+      text-align: center;
+    }
+
+    .box2{
+      display: flex;
+      justify-content: space-between;
+     
+      width: 470px;
+      height: 30px;
+      /* border:1px solid black; */
+    }
+
+    .blue{
+      color:blue;
+      text-align: right;
+      top: 30px;
+    }
+
+
+    .box4{
+      width: 470px;
+      height: 3px;
+      background-color:blue;
+      opacity: 0.;
+    }
+
+    a{
+      text-decoration: none;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="box">
+    <div class="alert red white" role="alert">
+      lnvalid Login or password
+    </div>
+    <h1 class="bold">SSAFY 전용 Gitlab 시스템</h1>
+    <hr>
+    <div1 class="card" style="width: 500px;">
+      <div class="card-body">
+          <h6 class="bold">Sign in</h6>
+          <br>
+          <div class="box4"></div>
+
+        <br>
+        <label for="inputPassword5" class="form-label bold">Username or Email</label>
+        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+        <br>
+        <label for="inputPassword5" class="form-label bold">Password</label>
+        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+          <br>
+
+        <div class="box2 mb-3">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label ml-5" for="exampleCheck1">Remember me</label>
+            
+          </div>
+          <a href=""class="blue">Forgot your password?</a>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="btn btn-success" type="button">Sign in</button>
+          
+        </div>
+        <br>
+        
+
+
+
+      </div>
+    </div1>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+</body>
+</html>

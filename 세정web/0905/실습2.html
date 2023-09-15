@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 600px;
+      height: 300px;
+      border: 1px solid gray;
+      position: relative;
+      
+      
+    }
+    .flexbox{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: center;
+
+    }
+    h2{
+      padding-top: 40px;
+      padding-right: 10px;
+    }
+    img{
+      width: 180px;
+      height: 140px;
+      
+      float :left;
+    }
+    .a{
+      position: absolute;
+      right: -20px;
+      bottom: 15px;
+    } 
+    .name{
+      width: 180px;
+      text-align: center;
+    }
+    h3,h4{
+      margin: 5px;
+    }
+    .email{
+      position: absolute;
+      right: 5px;
+      bottom :30px;
+    }
+    p{
+      padding-right: 35px;
+      margin: 5px;
+    }
+    hr{
+      width: 90%;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>
+      <div class="flexbox">
+        <img src="profile.jpg" alt="Profile Image">
+        <h2>Company Name</h2>
+      </div>
+      <br>
+      <br>
+    
+      <div class="flexbox">
+        <div class="name">
+          <h3>한글 이름</h3>
+          <h4>English Name</h4>
+        </div>
+        <div>
+          <p>Phone Number</p>
+          <p>Email</p>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <p class="a">description</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
