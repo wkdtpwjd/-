@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <h1>여기가 Throw</h1>
+    <!--사용자가 입력할 수 있는 요소 form이 있어야 한다-->
+    <form action="/articles/catch/" method="GET">
+        <input type="text" name = 'name' >  <!--데이터를 서버로 전송할때 key-value형태로 전달됨 그때의 key 역할이 name-->
+        <input type="submit" value="던져라">
+    </form>
+</div>
+
+
+
+{% endblock content %}
