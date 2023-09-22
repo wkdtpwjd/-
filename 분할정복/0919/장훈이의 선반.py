@@ -1,7 +1,7 @@
 def f(i,N,s):
     global sum_v
     global min
-    global lst
+
 
     if i == N:
         if s >= B:  # 점원키의 합이 선반보다 크거나 같은경우에
@@ -39,7 +39,7 @@ for tc in range(1,T+1):
     bit = [0] * N
     sum_v = 0
     min = 100000000
-    lst = []
+
     f(0,N,0)
     print(f'#{tc}',min-B)
 

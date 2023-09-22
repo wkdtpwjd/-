@@ -25,7 +25,7 @@ for _ in range(m):
     graph[f].append([t,w])
 
 #1.누적거리르 계속저장
-INF = int(1e9)   # 최대값으로 1옥
+INF = int(1e9)   # 최대값으로 1억
 distance = [INF] * n
 
 def dijkstra(start):

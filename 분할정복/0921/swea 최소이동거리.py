@@ -2,7 +2,7 @@ def dijkstra(start): # 0번에서 출발
     distance = graph[start][:]
     distance[start] = 0 # 본인이 본인한테가는 거리는 0
     selected = set() # 간곳담는 집합
-    while len(selected) < N+1:
+    while len(selected) <= N+1:
         min_dis = 0xffffffff
         min_node = -1
 
@@ -27,7 +27,10 @@ for tc in range(1, T + 1):
     for _ in range(E):
         s, e, dis = map(int, input().split())
         graph[s][e] = dis  # 방향있는 그래프
-
-    print(f'#{tc}',dijkstra(0))
+    #print(graph)
+    # 무한대 1 6           # distance[i]
+    # 무한대 무한대 1
+    # 무한대 무한대 무한대
+    # print(f'#{tc}',dijkstra(0))
 
 

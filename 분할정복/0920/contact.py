@@ -20,14 +20,12 @@ for tc in range(1,11):
     for i in range(0,N,2):
         adj[data[i]][data[i+1]] = 1
     max_v = 0
-    result = 0
+    ans = 0
     lst = bfs(S)
     for i in range(len(lst)):
-        if max_v < lst[i]:
+        if max_v <= lst[i]:
             max_v = lst[i]
+            ans = i
 
-    for i in range(len(lst) - 1, -1, -1):
-        if lst[i] == max_v:
-            result = i
-            break
-    print(f'#{tc} {result}')
+    print(f'#{tc} {ans}')
+
