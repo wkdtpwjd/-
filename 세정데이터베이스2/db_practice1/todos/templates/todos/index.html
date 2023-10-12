@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <h1>인덱스</h1>
+  <div>
+    <div>
+      <h2>할 일 추가</h2>
+      <form action="{% url "todos:create" %}" method="POST">
+        {% csrf_token %}
+        {{ todo_form.as_p }}
+        <input type="submit" value="추가">
+      </form>
+    </div>
+    <h2>할 일 목록</h2>
+      {% for todo in todos  %}
+      <li>
+        {% if todo.completed %}
+        <p class="text-decoration-line-through"> 
+        {% else %}
+        <p>
+        {% endif %}
+        {{todo.content}}
+        </p>
+        <form action="{% url "todos:update" todo.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="content" maxlength="50" required="" id="id_content" value="{{todo.content}}">
+          <input type="checkbox" name="completed" id="id_completed" {% if  todo.completed %} checked {% endif %} >
+          <input type="submit" value="수정">
+        </form>
+        <form action="{% url "todos:delete" todo.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="삭제">
+        </form>
+        <hr>
+      </li>
+      {% endfor %}
+  </div>
+</div>
+{% endblock content %}
