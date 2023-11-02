@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <button id="btn">눌러봐!</button>
+  <script>
+    // 버튼을 눌렀을때 요청보내기
+    // 사용자가 버튼 눌렀을때 동작하기
+    // >> 이벤트 처리
+    btn = document.querySelector('#btn')
+    // 사용자가 클릭하면 동작할 내용을 선언
+    // 이벤트 리스너 등록
+    btn.addEventListener('click',function(){
+      // alert('눌렀음!')
+      // 요청 보내기 axios
+      const axios = require('axios');
+
+  // 지정된 ID를 가진 유저에 대한 요청
+  axios.get('/user?ID=12345')
+    .then(function (response) {
+      // 성공 핸들링
+      console.log(response);
+    })
+    .catch(function (error) {
+      // 에러 핸들링
+      console.log(error);
+    })
+    .finally(function () {
+      // 항상 실행되는 영역
+    });
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+  </script>
+</body>
+</html>

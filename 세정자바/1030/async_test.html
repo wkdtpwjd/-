@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id = "img-btn">눌러</button>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 1. 비동기 요청 및 처리 - call stack, Web API(event loop,tast queue)
+     // 2. XMLHttpRequest - javascript 에서 http요청 하는 객체
+     // 3. 처리순서가 다르다 ..호출한 순서대로 일이 처리 되지 않는다
+     // 4. 일의 순서를 맞춰줄 필요가 있음 >>> 콜백을 이용하면 되더라
+     // 5. promise라는 객체를 이용하면 일의 순서를 맞춰서 작성할 수 있다
+     // Http 요청을 순서에 맞게 처리할 수 있는 라이브러리>>Axios
+  function getDogimg() {
+    axios({
+    method: 'get',
+    url: 'https://dog.ceo/api/breeds/image/random'
+    })
+    .then (function(response) {  
+      console.log('성공입니다')
+      console.log(response)
+      // image 소스를 받아왔으니....
+      // image tag만들어서 속성지정하고 body에 붙이면 됩니다
+      const imgTag = document.createElement('img')
+      imgTag.src = response.data.message
+      document.body.appendChild(imgTag)
+      
+      })
+    .hcatc(function(error){
+      console.log('실패입니다')
+      console.log(error)
+    })
+}
+  // axios() 만 실행하면 동작은하는데 아무것도 볼 수 없음
+  // 요청이 성공했을 경우 실패했을 경우에 실행할 코드를 작성
+  // .then() : 성공했을때 실행하는 함수
+  // .catch() : 실패했을때 실행하는 함수
+
+
+  // btn이 눌리면 getDogimg 실행
+  const btn = document.querySelector('#img-btn')
+  btn.addEventListener('click',getDogimg)
+
+  </script>
+</body>
+</html>

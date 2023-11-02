@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // myFunc1() 선언식은 미리 메모리에 올라가 있어서 호출가능
+    // myFunc2() 표현식은 변수만 메모리에 올라가 있기 때문에 호출 불가능
+
+
+    // 콜백 :
+    function a(){
+      console.log('저는 a입니다')
+    }
+
+    // 함수를 인자로 받아오는 함수
+    function b(func){
+      console.log('저는 b입니다.func실행할께요')
+      func()
+    }
+    
+    b(a)
+
+    b(function(){
+      console.log('저는 콜백 11111입니다')
+    })
+    // 콜백함수 : 함수의 인자로 들어가서 주함수 실행되고 나중에 콜백함수가 실행된다
+    b(()=>{
+      console.log('저는 콜백입니다')
+    })
+
+
+
+
+  </script>
+</body>
+</html>

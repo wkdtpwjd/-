@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{ message }}</h1> <!--return값만 여기 사용가능 -->
+    <!-- <h1>{{ message.value }}</h1>   이거는 출력안됨  -->  
+
+  </div>
+
+
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp , ref } = Vue
+    const app = createApp({
+      setup() {
+        const message = ref('hellp vue!')
+        // console.log(message) // 이거는 출력이상하게 됨
+        console.log(message.value)
+        return {
+          message // 여기객체만 template에서 사용할 수있다 
+        } // return은 하나의 객체를 리턴한다
+      }
+    })
+
+
+
+
+
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

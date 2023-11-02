@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .header{
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1 id = 'title' class="header"></h1>
+  <script>
+    // HTML요소 조작
+    // 1. 조작하고자 하는 요소 선택 ->DOM
+    titleTag = document.querySelector('#title')
+    // 2. 선택한 요소의 속성 변경
+    titleTag.innerText = 'hello! javascript!'
+    titleTag.style.color = 'red'
+
+    // 3. 제공된 함수를 이용해서 속성 변경
+    titleTag.setAttribute('class','header')
+    // 4. 속성을 가져 올 수도 있다
+    titleTagId = titleTag.getAttribute('id')
+    console.log(titleTagId)
+  </script>
+</body>
+</html>

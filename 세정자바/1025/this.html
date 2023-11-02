@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 자바스크립트에서 object는 데이터 덩어리 같은 느낌..
+    myObj = {
+      // 어차피 키는 문자열이기 때문에 키값에 꼭 ''안붙여도됨...
+      key :'value',
+      key2:10,
+      key3 : function(){
+
+      }
+    } 
+    // 이런느낌으로 
+
+    myObj2 = {
+      name :'김철수',
+      score : [90,100,80],
+      greetings : function(){
+        console.log(`안녕하세요 저는 ${this.name}입니다`)
+      },
+      checkScore : function(){
+        this.score.forEach(function(item){
+          console.log(item)
+        })
+      }
+    } 
+
+
+    // myObj2.greetings()
+    // myObj2.name = '김싸피'
+    // myObj2.greetings()
+    myObj2.checkScore()   // 90 100 80
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }} 번째 글</h3>
+  <hr>
+  <p>작성자 : {{ article.user }}</p>
+  <p>제목: {{ article.title }}</p>
+  <p>내용: {{ article.content }}</p>
+  <p>작성 시각: {{ article.created_at }}</p>
+  <p>수정 시각: {{ article.updated_at }}</p>
+  <hr>
+  {% if request.user == article.user %}
+    <a href="{% url "articles:update" article.pk %}">UPDATE</a>
+    <form action="{% url "articles:delete" article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="삭제">
+    </form>
+  {% endif %}
+  <hr>
+  <h4>댓글 목록</h4>
+  <ul id="comment-list">
+    {% for comment in comments %}
+      <li>
+        {{ comment.user }} - {{ comment.content }}
+        {% if request.user == comment.user %}
+          <form action="{% url "articles:comments_delete" article.pk comment.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="삭제">
+          </form>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <form id="comment-form" data-article-id="{{article.pk}}">
+    {% csrf_token %}
+    {{ comment_form }}
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="{% url "articles:index" %}">[back]</a>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const commentForm = document.querySelector('#comment-form')
+    const commentInput = document.querySelector('#id_content')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const commentList = document.querySelector('#comment-list')
+    const articleId = commentForm.dataset.articleId
+
+    commentForm.addEventListener('submit',function(event){
+      event.preventDefault()
+      // 댓글 만들기 요청 생성하기
+      const formData = new FormData()
+      formData.append('content',commentInput.value)
+      axios({
+        method:'post',
+        url: `/articles/${articleId}/comments/`,
+        data :formData,
+        headers: {'X-CSRFToken': csrftoken},
+      })
+      .then((response) => {
+        const { articlePk,commentPk,commentContent } = response.data
+        const liTag = document.createElement('li')
+        console.log(commentContent)
+        liTag.innerText = commentContent
+        commentList.appendChild(liTag)
+        // 댓글 DB에 저장하기 성공!
+        // >> 원래 화면에 있는 댓글을 
+        // 내가 쓴 댓글을 포함하는 리스트로 변경해주기
+        // JSON으로 
+      })
+    
+    })
+
+
+
+  </script>
+</body>
+
+</html>
+<!--
+  1. 댓글 작성을 눌렀을때 , form에서 submit을 발생시키는 것이 아니라
+    javascript에서 XHR객체를 이용해서 요청 하기로 변경
+    : form에서 submit이벤트가 발생하면....javascript에서 요청하기
+-->

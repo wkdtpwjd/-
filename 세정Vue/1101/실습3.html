@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>사각형의 특징</h1>
+    <p>가로 길이 : {{ width }}</p>
+    <p>세로 길이 : {{ height }}</p>
+    <p>넓이 : {{ a }}</p>
+    <p>둘레 : {{ b }}</p>
+    <hr>
+    <h3>정사각형이라면,</p>
+    <p>한 변의 길이 : {{ squareSide}} </p>
+    <p>정사각형 넓이 : {{squareSide*squareSide}}</p>
+    <p>정사각형 둘레 : {{squareSide*4}}</p>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+    const app = createApp({
+      setup() {
+        const width = ref(5)
+        const height = ref(6)
+        const a = width.value*height.value
+        const b = (width.value+height.value) * 2
+        const squareSide = ref(7)
+        return {
+          width,
+          height,
+          a,
+          b,
+          squareSide
+        }
+
+
+      }
+    }) 
+    app.mount('#app')
+  </script>
+</body>
+</html>

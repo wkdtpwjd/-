@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button>aaa</button>
+
+  <div id="app"> 
+    <button @click="addNumber">눌러봐</button>
+    <p>{{ number }}</p>
+    <form @submit.prevent="onSubmit">
+      <button>폼</button>
+    </form>
+  </div>
+
+
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp,ref } = Vue
+    const app = createApp({
+      setup() {
+        const number = ref(0)
+        const onSubmit = function(){
+          console.log('submit 발생')
+        }
+        const addNumber = function() {
+          number.value++
+        }
+         return{
+          number,
+          addNumber,
+          onSubmit
+        }
+      }
+    })
+    app.mount('#app')
+
+
+
+  </script>
+</body>
+</html>

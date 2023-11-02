@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" @input="onInput">
+    <button @click="setHello">글자바꾸기</button>
+    <p>여기에 출력 : {{ msg }}</p>
+  </div>
+
+
+  <div id="app2">
+    <input type="text" v-model="msg">
+    <button @click="setHello">글자 바꾸기</button>
+    <p>{{ msg }}</p>
+
+  </div>
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+     const { createApp,ref } = Vue
+     const app = createApp({
+      setup() {
+        const setHello = function() {
+          msg.value = 'hello!'
+        }
+        const msg = ref('')
+        const onInput = function(event) {
+          // console.log(event.target.value)
+          msg.value = event.target.value
+        }
+        return{
+          msg,
+          onInput,
+          setHello
+        }
+      }
+     })
+     app.mount('#app')
+
+
+     const app2 = createApp({
+      setup() {
+        const msg = ref('')
+        const setHello = function() {
+          msg.value = 'hello'
+        }
+        return{
+          msg,
+          setHello
+        }
+      }
+     })
+     app2.mount('#app2')
+  </script>
+</body>
+</html>

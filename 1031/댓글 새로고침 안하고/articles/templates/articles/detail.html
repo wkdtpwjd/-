@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }} 번째 글</h3>
+  <hr>
+  <p>제목 : {{ article.title }}</p>
+  <p>내용 : {{ article.content }}</p>
+  <p>작성시각 : {{ article.created_at }}</p>
+  <p>수정시각 : {{ article.updated_at }}</p>
+  <hr>
+  {% if user == article.user %}
+    <a href="{% url 'articles:update' article.pk %}">[UPDATE]</a>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="DELETE">
+    </form>
+  {% endif %}
+  <a href="{% url 'articles:index' %}">[back]</a>
+  <hr>
+  <h4>댓글 목록</h4>
+  <ul id="comment-list">
+    {% for comment in comments %}
+      <li >
+        {{ comment.user }} - {{ comment.content }}
+        {% if user == comment.user %}
+          <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" value="DELETE">
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}
+      <p>댓글이 없어요..</p>
+    {% endfor %}
+  </ul>
+
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form id="comment-form" data-article-id="{{article.pk}}" action="{% url 'articles:comments_create' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
+{% endblock content %}
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const form = document.querySelector('#comment-form')
+    const input = document.querySelector('[name=content]')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const articleId = form.dataset.articleId
+    const commentList = document.querySelector('#comment-list')
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      
+	    // 이곳에 코드를 작성하세요
+      // 원래 form요소에서 submit 이벤트로...POST 요청이 발생했는데.. 그걸 막았으니
+      // javascript에서 요청 생성하기
+      // console.log(articleId)
+      // data를 POST로 보낼때는 FormData
+      console.log(form)
+      const data = new FormData()
+      data.append('content', input.value)
+      axios({
+        method : 'POST',
+        url : `/articles/${articleId}/comments/`,
+        data,
+        headers : {'X-CSRFToken': csrftoken },
+      })
+      //쓰고나서...정상적으로 작성되었으면...댓글 리스트를 그리기....
+      //axios 요청이 정상적으로 수행되었으면..then()함수의 인자로 넣어준
+      // 콜백함수가 실행됩니다. 
+      .then((response)=>{
+        console.log(response.data)
+        const { articlePk, commentPk, commentContent, userName} = response.data
+        const li = document.createElement('li')
+        li.textContent = `${userName} - ${commentContent}`
+        const deleteForm = document.createElement('form')
+        deleteForm.classList.add('d-inline')
+        deleteForm.setAttribute('action',`/articles/${articlePk}/comments/${commentPk}/delete/`)
+        deleteForm.setAttribute('method','POST')  
+        //csrf token 추가
+        const csrfInput = document.createElement('input')
+        csrfInput.setAttribute('type','hidden')
+        csrfInput.setAttribute('name','csrfmiddlewaretoken')
+        csrfInput.value = csrftoken
+
+        //submit 버튼
+        const submitInput = document.createElement('input')
+        submitInput.setAttribute('type','submit')
+        submitInput.value = 'DELETE'
+        
+        deleteForm.appendChild(csrfInput)
+        deleteForm.appendChild(submitInput)
+        li.appendChild(deleteForm)
+        commentList.appendChild(li)
+        input.value = ''
+      })
+    })
+
+  </script>
+{% endblock script %}

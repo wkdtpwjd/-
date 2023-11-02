@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">눌러봐</button>
+  <p id = "number-p">0</p>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // Vue의 역할은 HTML 요소들을 모듈화해서 관리하기 쉽게 만들어주는 Frount-end
+
+    const btn = document.querySelector('#btn')
+    const pTag = document.querySelector('#number-p')
+    btn.addEventListener('click',function(){
+      let origin = pTag.textContent
+      origin = Number(origin)
+      pTag.textContent = origin++
+    })
+  </script>
+</body>
+</html>

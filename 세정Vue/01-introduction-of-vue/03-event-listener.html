@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id ="app">
+    <button v-on:click="increment">{{ count }}</button> <!--v-on 이 이벤트리스너 역할-->
+    <button @click="increment">{{ count }}</button>  <!--v-on이 @-->
+  </div>
+
+
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const count = ref(0)
+        const ilncrement = function() {
+          count.value++
+        }
+        return {
+          count,
+          
+          increment
+        }
+
+      }
+    })
+
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
