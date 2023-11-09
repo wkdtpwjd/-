@@ -14,7 +14,7 @@
     
 
     <ul>
-      <li v-for="item in isActiveExhibition">
+      <li v-for="item in isActiveExhibition" :key="item.name">
         <h3>{{ item.title }}</h3>
         <p>{{ item.place }}</p>
         <p>가격 : {{ item.price }}</p>
@@ -66,7 +66,9 @@
             isActive:false
           }
         ])
-
+        
+        // computed : 내가 가지고 있는 data를 이용해서 계산한 결과를 알고 싶을때
+        // 전체 배열에서 조건에 맞는 요소들만 모은 배열 만들기
         const isActiveExhibition = computed(()=>{
           return infoArr.value.filter((exhibition)=>{
             if (isChecked.value) {

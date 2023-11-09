@@ -1,0 +1,14 @@
+<template>
+  <div>
+    <h1>학생 상세 정보 페이지 입니다</h1>
+    <p>이름 : {{ $route.params.studentname }}</p>
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+
+</style>
